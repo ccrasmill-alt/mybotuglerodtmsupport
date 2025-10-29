@@ -1,11 +1,19 @@
-from telebot.custom_filters import StateFilter
+import os
+from telebot import TeleBot
+from dotenv import load_dotenv
 
-from logger import main_logger
-from config_data.config import bot
-from handlers import start
+load_dotenv()  # <-- добавляем эту строку, чтобы BotHost подхватил BOT_TOKEN
 
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-if __name__ == '__main__':
-    main_logger.info("Бот начал работу.")
-    bot.add_custom_filter(StateFilter(bot))
-    bot.infinity_polling(timeout=60, long_polling_timeout=60)
+if not BOT_TOKEN:
+    print("Ошибка: BOT_TOKEN не найден! Добавь переменную окружения BOT_TOKEN на Bothost.")
+else:
+    bot = TeleBot(BOT_TOKEN)
+
+    @bot.message_handler(commands=["start"])
+    def start(message):
+        bot.send_message(message.chat.id, "Привет! Я бот 👕 Помогаю определить размер одежды!")
+
+    print("✅ Бот запущен и слушает Telegram...")
+    bot.polling(none_stop=True)
