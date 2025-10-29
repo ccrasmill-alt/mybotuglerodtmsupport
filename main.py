@@ -1,12 +1,13 @@
 import os
 from telebot import TeleBot
+from telebot.types import ParseMode
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 if not BOT_TOKEN:
-    print("❌ Ошибка: BOT_TOKEN не найден! Добавь переменную окружения BOT_TOKEN на Bothost.")
+    print("Ошибка: BOT_TOKEN не найден! Добавь переменную окружения BOT_TOKEN на Bothost.")
 else:
-    bot = TeleBot(BOT_TOKEN, parse_mode="Markdown")
+    bot = TeleBot(BOT_TOKEN)
 
     @bot.message_handler(commands=["start"])
     def start(message):
@@ -20,8 +21,7 @@ else:
             "🎯 *Например:* 88, 65, 92\n\n"
             "Готов(а) начать? Жду твои замеры! 👇"
         )
-        bot.send_message(message.chat.id, text)
+        bot.send_message(message.chat.id, text, parse_mode=ParseMode.MARKDOWN)
 
-    print("✅ Бот запущен и ждёт сообщений...")
     bot.polling(none_stop=True)
 
