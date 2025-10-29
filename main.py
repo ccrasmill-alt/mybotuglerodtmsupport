@@ -24,6 +24,7 @@ else:
         bot.send_message(message.chat.id, text, parse_mode=ParseMode.MARKDOWN)
 
     bot.polling(none_stop=True
+# Обновление для перезапуска
 
 
 
