@@ -1,14 +1,13 @@
-import os
 from telebot import TeleBot
 from telebot.types import ParseMode
 
-BOT_TOKEN = 8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs
+BOT_TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"
 
 if not BOT_TOKEN:
     print("❌ Ошибка: BOT_TOKEN не найден! Добавь переменную окружения BOT_TOKEN на Bothost.")
 else:
     bot = TeleBot(BOT_TOKEN)
-    print("✅ Бот запущен и слушает Telegram...")  # <-- эта строка покажет, что polling запущен
+    print("✅ Бот запущен и слушает Telegram...")
 
     @bot.message_handler(commands=["start"])
     def start(message):
@@ -24,7 +23,7 @@ else:
         )
         bot.send_message(message.chat.id, text, parse_mode=ParseMode.MARKDOWN)
 
-    bot.polling(none_stop=True)
+    bot.polling(none_stop=True
 
 
 
