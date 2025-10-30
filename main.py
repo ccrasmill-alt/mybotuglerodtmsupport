@@ -1,7 +1,7 @@
 from telebot import TeleBot
 from telebot.types import ParseMode
 
-BOT_TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"
+BOT_TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"  # <= токен В КАВЫЧКАХ!
 
 if not BOT_TOKEN:
     print("❌ Ошибка: BOT_TOKEN не найден!")
