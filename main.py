@@ -1,18 +1,16 @@
-import os
-from aiogram import Bot, Dispatcher, types
-from aiogram.utils import executor
+from telebot import TeleBot
+from telebot.types import ParseMode
 
-# Загружаем токен
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+BOT_TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"
 
 if not BOT_TOKEN:
-    print("❌ Ошибка: BOT_TOKEN не найден! Добавь переменную окружения на Bothost.")
+    print("❌ Ошибка: BOT_TOKEN не найден!")
 else:
-    bot = Bot(token=BOT_TOKEN)
-    dp = Dispatcher(bot)
+    bot = TeleBot(BOT_TOKEN)
+    print("✅ Бот запущен и слушает Telegram...")
 
-    @dp.message_handler(commands=["start"])
-    async def start(message: types.Message):
+    @bot.message_handler(commands=["start"])
+    def start(message):
         text = (
             "Я твой виртуальный ассистент *UGLEROD!* ✨\n\n"
             "Помогу подобрать идеальный размер без лишних хлопот. Для этого мне понадобятся всего три параметра:\n\n"
@@ -23,9 +21,8 @@ else:
             "🎯 *Например:* 88, 65, 92\n\n"
             "Готов(а) начать? Жду твои замеры! 👇"
         )
-        await message.answer(text, parse_mode="Markdown")
+        bot.send_message(message.chat.id, text, parse_mode=ParseMode.MARKDOWN)
 
-    if __name__ == "__main__":
-        print("✅ Бот запущен и слушает Telegram...")
-        executor.start_polling(dp, skip_updates=True)
+    bot.polling(none_stop=True)
+
 
