@@ -1,7 +1,7 @@
 import telebot
 
 # 🔒 Твой токен
-TOKEN = "твой_токен_сюда"
+TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"
 bot = telebot.TeleBot(TOKEN)
 
 # 📏 Таблица размеров
@@ -59,3 +59,4 @@ def handle_size(message):
 
 # 🚀 Запуск
 bot.polling(none_stop=True)
+
