@@ -1,13 +1,15 @@
 from telebot import TeleBot
 from telebot.types import ParseMode
 
-BOT_TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"  # <= токен В КАВЫЧКАХ!
+print("🔥 main.py запущен!")  # Проверяем, что файл вообще стартует
+
+BOT_TOKEN = "8484977548:AAFv9n_VdKc_d1Ia304UugTxRJqYqjDqMLs"  # <= обязательно в кавычках
 
 if not BOT_TOKEN:
     print("❌ Ошибка: BOT_TOKEN не найден!")
 else:
     bot = TeleBot(BOT_TOKEN)
-    print("✅ Бот запущен и слушает Telegram...")
+    print("✅ Бот запущен и слушает Telegram...")  # Проверяем, что polling стартует
 
     @bot.message_handler(commands=["start"])
     def start(message):
@@ -23,6 +25,9 @@ else:
         )
         bot.send_message(message.chat.id, text, parse_mode=ParseMode.MARKDOWN)
 
-    bot.polling(none_stop=True)
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(f"⚠️ Ошибка при запуске бота: {e}")
 
 
